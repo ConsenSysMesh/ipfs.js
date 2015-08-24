@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+    <body>
+        <pre>
+            <div id='results' />
+        </pre>
+        <script src="./ipfs.min.js"></script>
+        <script>
+            ipfs.setProvider();
+            ipfs.api.id(function(err, res) {
+                var txt;
+                if (err) txt = 'Error connecting to IPFS node. Make sure its running';
+                else txt = JSON.stringify(res, null, 4);
+                document.getElementById('results').innerHTML = txt;
+            });
+        </script>
+    </body>
+</html>
+
+
