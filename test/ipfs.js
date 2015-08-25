@@ -1,4 +1,5 @@
 var ipfs = require('../ipfs.js');
+var ipfsApi = require('ipfs-api');
 var ipfsd = require('ipfsd-ctl');
 var assert = require('chai').assert;
 
@@ -22,10 +23,22 @@ describe('IPFS', function () {
 		if (err) throw err;
 		log('ipfs daemon running');
 
-		ipfs.setProvider({host: ipfsNode.apiAddr});
+		ipfs.api = ipfsApi(ipfsNode.apiAddr);
 		done();
 	    });
 	});
+    });
+
+    it('setProvider throws error in node', function(done) {
+    	var err;
+    	try {
+	    ipfs.setProvider({host: ipfsNode.apiAddr});
+	} catch (e) {
+	    err = e;
+	} finally {
+	    assert.isNotNull(err);
+	    done();
+	}
     });
 
     it('verify connection', function(done) {

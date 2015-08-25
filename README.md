@@ -4,24 +4,26 @@ Wrapper for [node-ipfs-api](https://github.com/ipfs/node-ipfs-api)
 
 ## Browser friendly
 
-Referencing `ipfs.min.js` inside `<script></script>` tags will expose the global `ipfs`
+Run `npm install ipfs-js`
+
+Or reference `ipfs.min.js` inside a `<script />` to expose the global `ipfs`
 
 ## Example
 
 ### 1) Start IPFS
+
 	export API_ORIGIN="http://localhost:8080"
 	ipfs daemon
 
 ### 2) Upload example directory
-	git clone https://github.com/ConsenSys/ipfs.js && cd ipfs.js
-	ipfs add -r example
-	> added QmeJzfiqxDpvYcGmNnfJFw4M6WPdfpEfs6bu7hDCLgVq2a example/index.html
-	> added Qmd2NxNnbEFVzrSUYLzTim7pa4JVcfKUff8ChBfeSYAYkk example/ipfs.min.js
-	> added QmT7g6zhXE5qUQEgZ5fgjPfK9HKZosatSiBVG4h6wN2JUc example
+
+`git clone https://github.com/ConsenSys/ipfs.js && cd ipfs.js`
+
+For non-default ipfs configurations, you can run `./example.url` to `ipfs add -r example` and print the local gateway's url
 
 ### 3) Open IPFS gateway
-Navigate to `http://localhost:8080/ipfs/QmT7g6zhXE5qUQEgZ5fgjPfK9HKZosatSiBVG4h6wN2JUc` in the browser. You should see a JSON with info about your local IPFS node
 
+Navigate to the url echoed from `./example.url` in the browser, or run `./example.url | xargs open` to open it on OSX
 
 ## Methods
 
@@ -52,11 +54,6 @@ Navigate to `http://localhost:8080/ipfs/QmT7g6zhXE5qUQEgZ5fgjPfK9HKZosatSiBVG4h6
 
 #### `ipfs.api.*`  - all methods from node-ipfs-api
 
-#### `ipfs.utils.*`
-
- * `ipfs.utils.hexToString(hex)`
- * `ipfs.utils.stringToHex(string)`
- * `ipfs.utils.base58ToHex(base58)`
- * `ipfs.utils.hexToBase58(hex)`
-
+#### `ipfs.utils.base58ToHex(base58)`
+#### `ipfs.utils.hexToBase58(hex)`
 
