@@ -43,6 +43,8 @@ ipfs.add = function(text, callback) {
 
 ipfs.cat = function(ipfsHash, callback) {
     ipfs.api.cat(ipfsHash, function(err, res) {
+        if (err || !res) return callback(err, null);
+
         var gotIpfsData = function (ipfsData) {
             var ipfsText = ipfsData.toString();
             callback(err, ipfsText);
@@ -50,15 +52,12 @@ ipfs.cat = function(ipfsHash, callback) {
 
         var concatStream = concat(gotIpfsData);
 
-        if(err || !res) return console.error(err);
-
         if(res.readable) {
             // Returned as a stream
             res.pipe(concatStream);
         } else {
             // Returned as a string
-            // TODO: Not sure what to do here...
-            console.log(res);
+            callback(err, res);
         }
     });
 };
