@@ -10,18 +10,23 @@ Or reference `ipfs.min.js` inside a `<script />` to expose the global `ipfs`
 
 ## Example
 
-### 1) Start IPFS
+### 1) Set IPFS CORS access
 
-	export API_ORIGIN="http://localhost:8080"
-	ipfs daemon
+       ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+       ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
+       ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials '["true"]'
 
-### 2) Upload example directory
+### 2) Start IPFS
+
+       ipfs daemon
+
+### 3) Upload example directory
 
 `git clone https://github.com/ConsenSys/ipfs.js && cd ipfs.js`
 
 For non-default ipfs configurations, you can run `./example.url` to `ipfs add -r example` and print the local gateway's url
 
-### 3) Open IPFS gateway
+### 4) Open IPFS gateway
 
 Navigate to the url echoed from `./example.url` in the browser, or run `./example.url | xargs open` to open it on OSX
 
