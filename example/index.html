@@ -2,6 +2,8 @@
 <html lang="en">
     <body>
         <pre>
+            <div id='ipfsAddResults'></div>
+            <div id='ipfsCatResults'></div>
             <div id='results' />
         </pre>
         <script src="./ipfs.min.js"></script>
@@ -12,6 +14,13 @@
                 if (err) txt = 'Error connecting to IPFS node. Make sure its running';
                 else txt = JSON.stringify(res, null, 4);
                 document.getElementById('results').innerHTML = txt;
+                var testString = 'ipfs.add and ipfs.cat seems to be working!';
+                ipfs.add(testString, function(err, resHash) {
+                  document.getElementById('ipfsAddResults').innerHTML = 'Added: ' + resHash;
+                  ipfs.cat(resHash, function(err, text) {
+                    document.getElementById('ipfsCatResults').innerHTML = text;
+                  });
+                })
             });
         </script>
     </body>
