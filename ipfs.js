@@ -14,8 +14,12 @@ ipfs.defaultProvider = {host: 'localhost', port: '5001'};
 ipfs.api = null;
 
 ipfs.setProvider = function(opts) {
-    if (!ipfsApi) throw Error('IPFS API Invalid: in node run ipfs.api = require(\'ipfs-api\')(host, port); instead');
     if (!opts) opts = this.defaultProvider;
+    if (typeof opts === 'object' && !opts.hasOwnProperty('host')) {
+        ipfs.api = opts;
+        return;
+    }
+
     ipfs.currentProvider = opts;
     ipfs.api = ipfsApi(opts.host, opts.port);
 };

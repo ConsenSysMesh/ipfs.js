@@ -23,7 +23,7 @@ describe('IPFS', function () {
 		if (err) throw err;
 		log('ipfs daemon running');
 
-		ipfs.api = ipfsApi(ipfsNode.apiAddr);
+		ipfs.setProvider(ipfsApi(ipfsNode.apiAddr));
 		done();
 	    });
 	});

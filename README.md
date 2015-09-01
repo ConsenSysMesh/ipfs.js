@@ -37,6 +37,10 @@ Navigate to the url echoed from `./example.url` in the browser, or run `./exampl
 * _localhost_ and _5001_ are the defaults when calling without arguments
 * is also equivalent to `ipfs.setProvider({host: '/ip4/127.0.0.1/tcp/5001'})`
 
+### `ipfs.setProvider(require('ipfs-api')('localhost', '5001'))`
+
+node.js compatibility for ipfs.js
+
 
 #### `ipfs.add(text, callback)`
 
