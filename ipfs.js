@@ -1,7 +1,7 @@
 var ipfsApi;
 
 try {
-    ipfsApi  = require('ipfs-api/ipfsapi.min.js');
+    ipfsApi  = require('ipfs-api/dist/ipfsapi.min.js');
 } catch(e) {}
 
 var base58   = require('bitcore/lib/encoding/base58.js');
