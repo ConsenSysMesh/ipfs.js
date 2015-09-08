@@ -1,6 +1,6 @@
 {
   "name": "ipfs-js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Helper methods for ipfs-api",
   "main": "ipfs.js",
   "browserify": {

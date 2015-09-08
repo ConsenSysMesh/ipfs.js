@@ -42,7 +42,7 @@ Navigate to the url echoed from `./example.url` in the browser, or run `./exampl
 node.js compatibility for ipfs.js
 
 
-#### `ipfs.add(text, callback)`
+#### `ipfs.add(textOrBuffer, callback)`
 
 	ipfs.add("Testing...", function(err, hash) {
 		if (err) throw err; // If connection is closed
@@ -51,6 +51,13 @@ node.js compatibility for ipfs.js
 
 
 #### `ipfs.cat(hash, callback)`
+
+	ipfs.cat("Qmc7CrwGJvRyCYZZU64aPawPj7CJ56vyBxdhxa38Dh1aKt", function(err, buffer) {
+		if (err) throw err;
+		console.log(buffer.toString()); 	// "Testing..."
+	});
+
+#### `ipfs.catText(hash, callback)`
 
 	ipfs.cat("Qmc7CrwGJvRyCYZZU64aPawPj7CJ56vyBxdhxa38Dh1aKt", function(err, text) {
 		if (err) throw err;

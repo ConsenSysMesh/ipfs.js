@@ -19,7 +19,7 @@
                 var testString = 'ipfs.add and ipfs.cat seem to be working!';
                 ipfs.add(testString, function(err, resHash) {
                   document.getElementById('ipfsAddResults').innerHTML = 'Added: ' + resHash;
-                  ipfs.cat(resHash, function(err, text) {
+                  ipfs.catText(resHash, function(err, text) {
                     document.getElementById('ipfsCatResults').innerHTML = text;
                   });
                 });

@@ -52,13 +52,20 @@ ipfs.add = function(input, callback) {
   });
 };
 
+ipfs.catText = function(ipfsHash, callback) {
+  ipfs.cat(ipfsHash, function(err, data) {
+    if (ipfs.api.Buffer.isBuffer(data))
+      data = data.toString();
+    callback(err, data);
+  });
+}
+
 ipfs.cat = function(ipfsHash, callback) {
   ipfs.api.cat(ipfsHash, function(err, res) {
     if (err || !res) return callback(err, null);
 
     var gotIpfsData = function (ipfsData) {
-      var ipfsText = ipfsData.toString();
-      callback(err, ipfsText);
+      callback(err, ipfsData);
     };
 
     var concatStream = concat(gotIpfsData);
@@ -79,7 +86,8 @@ ipfs.addJson = function(jsonObject, callback) {
 };
 
 ipfs.catJson = function(ipfsHash, callback) {
-  ipfs.cat(ipfsHash, function (err, jsonString) {
+  ipfs.catText(ipfsHash, function (err, jsonString) {
+
     var jsonObject = typeof jsonString === 'string' ?  JSON.parse(jsonString) : jsonString;
     callback(err, jsonObject);
   });

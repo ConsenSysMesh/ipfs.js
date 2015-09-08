@@ -63,7 +63,7 @@ describe('IPFS', function () {
     var targetText = 'Testing...';
 
     ipfs.cat(targetHash, function(err, data) {
-      assert.strictEqual(data, targetText);
+      assert.strictEqual(data.toString(), targetText);
       done();
     });
   });
