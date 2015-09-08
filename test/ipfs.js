@@ -48,7 +48,7 @@ describe('IPFS', function () {
     });
   });
 
-  it("adds data to IPFS", function(done) {
+  it("adds text to IPFS", function(done) {
     var targetHash = 'Qmc7CrwGJvRyCYZZU64aPawPj7CJ56vyBxdhxa38Dh1aKt';
     var targetText = 'Testing...';
 
@@ -58,7 +58,7 @@ describe('IPFS', function () {
     });
   });
 
-  it("gets data from IPFS", function(done) {
+  it("gets text from IPFS", function(done) {
     var targetHash = 'Qmc7CrwGJvRyCYZZU64aPawPj7CJ56vyBxdhxa38Dh1aKt';
     var targetText = 'Testing...';
 
@@ -68,6 +68,16 @@ describe('IPFS', function () {
     });
   });
 
+  it("adds data to IPFS", function(done) {
+    var targetHash = 'Qmc7CrwGJvRyCYZZU64aPawPj7CJ56vyBxdhxa38Dh1aKt';
+    var targetText = 'Testing...';
+    var buf = new Buffer(targetText);
+
+    ipfs.add(buf, function(err, hash) {
+      assert.strictEqual(hash, targetHash);
+      done();
+    });
+  });
 
   it("adds JSON to IPFS", function(done) {
 

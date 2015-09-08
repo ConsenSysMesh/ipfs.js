@@ -36,10 +36,17 @@ ipfs.utils.hexToBase58 = function(hexStr) {
   return base58.encode(buf);
 };
 
-ipfs.add = function(text, callback) {
-  var textBuffer = new Buffer(text);
+ipfs.add = function(input, callback) {
 
-  ipfs.api.add(textBuffer, function (err, ret) {
+  var buf;
+  if (typeof input === 'string') {
+    buf = new Buffer(input);
+  }
+  else {
+    buf = input;
+  }
+
+  ipfs.api.add(buf, function (err, ret) {
     if (err) callback(err, null);
     else callback(null, ret[0] ? ret[0].Hash : ret.Hash);
   });
