@@ -6,7 +6,7 @@ Wrapper for [node-ipfs-api](https://github.com/ipfs/node-ipfs-api)
 
 Run `npm install ipfs-js`
 
-Or reference `ipfs.min.js` inside a `<script />` to expose the global `ipfs`
+Or reference `dist/ipfs.min.js` inside a `<script />` to expose the global `ipfs`
 
 ## Example
 

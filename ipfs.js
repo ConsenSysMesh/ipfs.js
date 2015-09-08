@@ -74,6 +74,18 @@ ipfs.cat = function(ipfsHash, callback) {
       // Returned as a stream
       res.pipe(concatStream);
     } else {
+
+      if (!ipfs.api.Buffer.isBuffer(res)) {
+
+        if (typeof res === 'object')
+          res = JSON.stringify(res);
+
+        if (typeof res !== 'string')
+          throw new Error("ipfs.cat response type not recognized; expecting string, buffer, or object");
+
+        res = new ipfs.api.Buffer(res, 'binary');
+      }
+
       // Returned as a string
       callback(err, res);
     }

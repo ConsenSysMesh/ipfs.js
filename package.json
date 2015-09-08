@@ -1,6 +1,6 @@
 {
   "name": "ipfs-js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Helper methods for ipfs-api",
   "main": "ipfs.js",
   "browserify": {
@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "build": "./node_modules/.bin/browserify -s ipfs -e ./ipfs.js | ./node_modules/.bin/uglifyjs -m > ipfs.min.js && cp ipfs.min.js example/",
+    "build": "./node_modules/.bin/browserify -s ipfs -e ./ipfs.js | tee dist/ipfs.js | ./node_modules/.bin/uglifyjs -m > dist/ipfs.min.js && cp dist/ipfs.js example/",
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {

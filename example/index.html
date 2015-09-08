@@ -4,11 +4,12 @@
         <pre>
             <div id='ipfsAddResults'></div>
             <div id='ipfsCatResults'></div>
+            <div id='ipfsCatTextResults'></div>
             <div id='ipfsAddJsonResults'></div>
             <div id='ipfsCatJsonResults'></div>
             <div id='results' />
         </pre>
-        <script src="./ipfs.min.js"></script>
+        <script src="./ipfs.js"></script>
         <script>
             ipfs.setProvider();
             ipfs.api.id(function(err, res) {
@@ -20,7 +21,10 @@
                 ipfs.add(testString, function(err, resHash) {
                   document.getElementById('ipfsAddResults').innerHTML = 'Added: ' + resHash;
                   ipfs.catText(resHash, function(err, text) {
-                    document.getElementById('ipfsCatResults').innerHTML = text;
+                    document.getElementById('ipfsCatTextResults').innerHTML = text;
+                  });
+                  ipfs.cat(resHash, function(err, buffer) {
+                    document.getElementById('ipfsCatResults').innerHTML = 'ipfs.cat returned a buffer';
                   });
                 });
 
