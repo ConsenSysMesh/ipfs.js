@@ -99,8 +99,14 @@ ipfs.addJson = function(jsonObject, callback) {
 
 ipfs.catJson = function(ipfsHash, callback) {
   ipfs.catText(ipfsHash, function (err, jsonString) {
+    if (err) callback(err, {});
 
-    var jsonObject = typeof jsonString === 'string' ?  JSON.parse(jsonString) : jsonString;
+    var jsonObject = {};
+    try {
+      jsonObject = typeof jsonString === 'string' ?  JSON.parse(jsonString) : jsonString;
+    } catch (e) {
+      err = e;
+    }
     callback(err, jsonObject);
   });
 };
