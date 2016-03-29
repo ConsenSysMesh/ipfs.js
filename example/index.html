@@ -7,11 +7,15 @@
             <div id='ipfsCatTextResults'></div>
             <div id='ipfsAddJsonResults'></div>
             <div id='ipfsCatJsonResults'></div>
+            <div id='ipfsAddBufferResults'></div>
+            <div id='ipfsCatBufferResults'></div>
             <div id='results' />
         </pre>
+        <script src="./file-type.js"></script>
         <script src="./ipfs.js"></script>
         <script>
             ipfs.setProvider();
+            var jpgBuffer = new ipfs.api.Buffer('ffd8ffe000104a46494600010101006000600000ffe1001645786966000049492a0008000000000000000000ffdb00430001010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101ffdb00430101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101ffc00011080001000103012200021101031101ffc400150001010000000000000000000000000000000affc40014100100000000000000000000000000000000ffc40014010100000000000000000000000000000000ffc40014110100000000000000000000000000000000ffda000c03010002110311003f00bf8001ffd9', 'hex');
             ipfs.api.id(function(err, res) {
                 var txt;
                 if (err) txt = 'Error connecting to IPFS node. Make sure its running';
@@ -32,6 +36,18 @@
                     document.getElementById('ipfsAddJsonResults').innerHTML = 'Added: ' + resHash;
                     ipfs.catJson(resHash, function(err, jsonObj) {
                         document.getElementById('ipfsCatJsonResults').innerHTML = jsonObj.testKey;
+                    });
+                });
+                ipfs.add(jpgBuffer, function(err, resHash) {
+                    document.getElementById('ipfsAddBufferResults').innerHTML = 'Added: ' + resHash;
+                    ipfs.cat(resHash, function(err, buffer) {
+                        console.log('typeof ret buff', fileType(buffer));
+                        var sameFileType = (
+                                fileType(buffer).ext === fileType(jpgBuffer).ext &&
+                                fileType(buffer).mime === fileType(jpgBuffer).mime
+                                );
+                        var result = sameFileType && (buffer.toString('hex') === jpgBuffer.toString('hex'));
+                        document.getElementById('ipfsCatBufferResults').innerHTML = 'Cat returns correct buffer: ' + result;
                     });
                 });
             });

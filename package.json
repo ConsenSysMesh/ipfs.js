@@ -1,6 +1,6 @@
 {
   "name": "ipfs-js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Helper methods for ipfs-api",
   "main": "ipfs.js",
   "browserify": {
@@ -36,7 +36,7 @@
   "dependencies": {
     "bitcore": "^0.13.0",
     "concat-stream": "^1.5.0",
-    "ipfs-api": "2.3.2",
+    "ipfs-api": "https://github.com/ckeenan/node-ipfs-api#concat-bin@2.3.2",
     "vinyl": "^0.5.1"
   },
   "authors": [
