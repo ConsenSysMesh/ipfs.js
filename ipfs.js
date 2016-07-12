@@ -21,7 +21,7 @@ ipfs.setProvider = function(opts) {
   }
 
   ipfs.currentProvider = opts;
-  ipfs.api = ipfsApi(opts.host, opts.port, opts);
+  ipfs.api = ipfsApi(opts);
 };
 
 ipfs.utils = {};
