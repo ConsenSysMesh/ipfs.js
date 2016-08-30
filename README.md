@@ -1,3 +1,12 @@
+### ⚠️ ATTENTION ⚠️
+
+For this library to work on both nodejs and the browser, it depends on a old version of js-ipfs-api to avoid a [browserify issue](https://github.com/ipfs/js-ipfs-api/issues/190) with later versions
+
+For a very lightweight browser-only library, check out [browser-ipfs](https://github.com/pelle/browser-ipfs)
+
+Otherwise if using with node.js or a browser via webpack or `<script\>`, you probably want the most recent stable [js-ipfs-api](https://github.com/ipfs/js-ipfs-api)
+
+
 # ipfs.js
 
 Wrapper for [node-ipfs-api](https://github.com/ipfs/node-ipfs-api)
