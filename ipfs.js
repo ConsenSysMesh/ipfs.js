@@ -111,4 +111,26 @@ ipfs.catJson = function(ipfsHash, callback) {
   });
 };
 
+ipfs.addBase64 = function(data, callback) {
+    var dataBuffer = new Buffer(data, 'base64');
+
+    ipfs.api.add(dataBuffer, function (err, ret) {
+        if (err) callback(err, null);
+        else callback(null, ret[0] ? ret[0].Hash : ret.Hash);
+    });
+};
+
+// Not clear how to implement this
+
+// ipfs.catBase64 = function(ipfsHash, callback) {
+//   ipfs.api.cat(ipfsHash, function(err, res) {
+//     if (err || !res) return callback(err, null);  
+
+//     // Not clear what kind of format this is
+//     console.log(res);
+//     callback(err, res);
+//   });
+// };
+
+
 module.exports = ipfs;
